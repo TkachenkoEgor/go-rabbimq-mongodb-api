@@ -15,3 +15,7 @@
 > go run sendler.go
 
 _After that, the sent message will be recorded in MongoDB_
+
+_To get data through the API, you need to make a post request by passing the username and password (if everything is correct, you will receive a JWT).
+After that, you can make a GET request with a JWT in the header.
+In response, you will receive data from mongodb_
