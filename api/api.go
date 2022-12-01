@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
+	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -17,16 +18,23 @@ import (
 
 var router *mux.Router
 
+func init() {
+	// loads values from .env into the system
+	if err := godotenv.Load(); err != nil {
+		log.Print("No .env file found")
+	}
+}
+
 func CreateRouter() {
 	router = mux.NewRouter()
 }
 func InitializeRoute() {
-	router.HandleFunc("/db", requestHandler)
+	router.HandleFunc("/mydate", requestHandler)
 	router.HandleFunc("/login", loginHandler)
 
 	serv := &http.Server{
 		Handler:      router,
-		Addr:         "localhost:8080",
+		Addr:         "localhost:8081",
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
@@ -42,10 +50,6 @@ func main() {
 }
 
 func requestHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodGet {
-		w.WriteHeader(405) // Return 405 Method Not Allowed.
-		return
-	}
 
 	errVal := validateToken(w, r)
 	if errVal == nil {
@@ -95,7 +99,6 @@ func getData(ctx context.Context, r *http.Request) (map[string]interface{}, erro
 		collectionOne, _ = os.LookupEnv("COLLECTIONONE")
 		collectionSec, _ = os.LookupEnv("COLLECTIONSEC")
 	)
-
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://"+dbUser+":"+dbPass+"@"+dbHost))
 
 	if err != nil {
@@ -103,10 +106,10 @@ func getData(ctx context.Context, r *http.Request) (map[string]interface{}, erro
 	}
 	var ourCollection string
 
-	if collName == "testCollection#2" {
+	if collName == "testCollection2" {
 		ourCollection = collectionSec
 	}
-	if collName == "testCollection#1" {
+	if collName == "testCollection1" {
 		ourCollection = collectionOne
 	}
 	collection := client.Database(dbName).Collection(ourCollection)

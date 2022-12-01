@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/pkg/errors"
-	"log"
 	"net/http"
 	"os"
 	"time"
@@ -67,16 +66,13 @@ func generateJWT(username string) (string, error) {
 }
 func validateToken(w http.ResponseWriter, r *http.Request) (err error) {
 	if r.Header["Token"] == nil {
-		log.Printf("invalid token error, %v", err)
-		w.WriteHeader(500) // Return 500 Internal Server Error.
-		return
+		fmt.Fprintf(w, "can not find token in header")
+		return errors.New("Token error")
 	}
 
 	token, err := jwt.Parse(r.Header["Token"][0], func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			log.Printf("Unauthorized access for user: %v")
-			w.WriteHeader(401) // Wrong password or username, Return 401.
-			return nil, nil
+			return nil, fmt.Errorf("There was an error in parsing")
 		}
 		return sampleSecretKey, nil
 	})
