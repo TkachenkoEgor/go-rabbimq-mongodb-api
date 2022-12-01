@@ -16,6 +16,12 @@
 
 _After that, the sent message will be recorded in MongoDB_
 
+3. To start the API Server:
+>cd api
+
+>go run api.go
+
+
 _To get data through the API, you need to make a post request by passing the username and password (if everything is correct, you will receive a JWT).
 After that, you can make a GET request with a JWT in the header.
 In response, you will receive data from mongodb_
