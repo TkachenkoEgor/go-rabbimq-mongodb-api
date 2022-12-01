@@ -2,7 +2,7 @@ version: "3.9"
 services:
   mongo:
     build: ./build-mongo
-    container_name: mongo
+    container_name: mongo-container
     restart: always
 
     ports:
@@ -14,7 +14,7 @@ services:
 
   mongo-express:
     build: ./build-mongo-express
-    container_name: mongo-express
+    container_name: mongo-express-container
     restart: always
 
     ports:
@@ -38,7 +38,7 @@ services:
 
   rabbitmq:
     build: ./build-rabbitMQ
-    container_name: rabbitmq
+    container_name: rabbitmq-container
     environment:
       - RABBITMQ_ERLANG_COOKIE=SWQOKODSQALRPCLNMEQG
       - RABBITMQ_DEFAULT_USER=rabbit
