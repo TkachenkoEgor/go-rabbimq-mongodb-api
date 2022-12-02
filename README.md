@@ -12,7 +12,7 @@ go run receive.go
 2. if  you need to send a message:
 ```
 cd send
- go run sendler.go
+go run sendler.go
 ```
 _After that, the sent message will be recorded in MongoDB_
 
