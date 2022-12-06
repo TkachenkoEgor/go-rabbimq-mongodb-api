@@ -42,7 +42,7 @@ func main() {
 	// get the token
 	token := string(body)
 
-	url2 := "http://localhost:8080/mydate?firstD=1&secondD=99999999&collectionName=testCollection1"
+	url2 := "http://localhost:8080/mydate?firstD=1&secondD=99999999&collectionName=t"
 	method2 := "GET"
 
 	req2, err := http.NewRequest(method2, url2, nil)

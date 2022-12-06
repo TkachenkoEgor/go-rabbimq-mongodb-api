@@ -25,3 +25,16 @@ go run api.go
 _To get data through the API, you need to make a post request by passing the username and password (if everything is correct, you will receive a JWT).
 After that, you can make a GET request with a JWT in the header.
 In response, you will receive data from mongodb_
+
+
+4. To send a request with a jwt in the header using the GO code
+```
+cd api-request
+go run request.go
+```
+# IMPORTANT 
+
++ it is necessary to correctly create the request body (url 2)
+specify at least one date and the required collection.
+otherwise, you will see error (Invalid Namespace)
+or an empty structure
