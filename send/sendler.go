@@ -47,7 +47,7 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	msgBody := `{"collectionName":"testCollection#2",
+	msgBody := `{"collectionName":"testCollection#1",
 			"message":"test message2",
 			"date":"66329999999999999"}`
 	fmt.Println(msgBody)
