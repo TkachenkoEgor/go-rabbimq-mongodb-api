@@ -34,7 +34,7 @@ func InitializeRoute() {
 
 	serv := &http.Server{
 		Handler:      router,
-		Addr:         "localhost:8081",
+		Addr:         "localhost:8080",
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
