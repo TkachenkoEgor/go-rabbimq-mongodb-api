@@ -27,7 +27,7 @@ After that, you can make a GET request with a JWT in the header.
 In response, you will receive data from mongodb_
 
 
-4. To send a request with a jwt in the header using the GO code
+4. To send a HTTP request with a jwt in the header using the GO code
 ```
 cd api-request
 go run request.go
