@@ -34,7 +34,7 @@ go run request.go
 ```
 # IMPORTANT 
 
-+ it is necessary to correctly create the request body (url 2)
+it is necessary to correctly create the request body (url 2)
 specify at least one date and the required collection.
 otherwise, you will see error (Invalid Namespace)
 or an empty structure
